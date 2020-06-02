@@ -65,17 +65,22 @@ class MyStatefulEditor extends Component {
     var reader = new FileReader();
     var file = evt.target.files[0];
 
-    reader.onload = function(upload) {
-      console.log(upload.target.result);
-       self.setState({article:{
-        title: self.state.article.title,
-        content: self.state.article.content,
-        date: self.state.article.date,
-        image: upload.target.result,
-       }})
-    };
-    reader.readAsDataURL(file);
-    console.log();
+   
+     
+        if(file.size > 4 * 1024 * 1024)
+            alert("Max size allowed is 4Mb")
+        else {
+            reader.onload = function(upload) {
+            console.log(upload.target.result);
+             self.setState({article:{
+              title: self.state.article.title,
+              content: self.state.article.content,
+              date: self.state.article.date,
+              image: upload.target.result,
+             }})
+          };
+          reader.readAsDataURL(file);
+        }
     console.log("Uploaded");
   }
 
