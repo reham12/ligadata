@@ -89,7 +89,8 @@ class MyStatefulEditor extends Component {
        alert("This operation has been successfully")
        this.setState({article:{title: '', content: '', date:'', image: '' } , value:RichTextEditor.createEmptyValue()})
       // const dbFirstname = await db.formData.toArray();
-      // console.log(dbFirstname)      
+      // console.log(dbFirstname)    
+      window.location.href='/home'  
       }).catch(e => {
         // log any errors
         console.log(e.stack || e)

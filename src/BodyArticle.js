@@ -56,7 +56,7 @@ const Form = ({handlerEdit,handlerSpinner,key,id,title,date,image,content}) => {
   return (
     <Card className={classes.root}>
       <CardHeader
-        title={key}
+        title={title}
         subheader={date}
       />
       

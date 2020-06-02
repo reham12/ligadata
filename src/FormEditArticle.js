@@ -15,7 +15,7 @@ const formStyle = {
 class MyStatefulEditor extends Component {
   constructor(props) {
     super(props);
-    this.state = { value: RichTextEditor.createEmptyValue(),
+    this.state = { value: RichTextEditor.createValueFromString("", 'html'),
     article:{title: '', content: '', date:'', image: '' } };
   }
   static propTypes = {
@@ -32,7 +32,7 @@ class MyStatefulEditor extends Component {
       // perform a read/write transatiction on the new store
       db.transaction('rw', db.formData, async () => {
          var dbFirstname = await db.formData.where({'id':parseInt(this.props.id)}).toArray();
-         this.setState({article:dbFirstname[0]})
+         this.setState({article:dbFirstname[0],value:RichTextEditor.createValueFromString(dbFirstname[0].content, 'html')})       
      
       }).catch(e => {
         // log any errors
@@ -80,18 +80,21 @@ class MyStatefulEditor extends Component {
   }
 
   handleSubmit=  (e) => {
+
     e.preventDefault()
     db.transaction('rw', db.formData, async () => {
-       db.formData.add({
+       db.formData.put({
+        id:parseInt(this.props.id),
         title: this.state.article.title,
         content: this.state.article.content,
         date: this.state.article.date,
         image: this.state.article.image,
       });
-       alert("This operation has been successfully")
-       this.setState({article:{title: '', content: '', date:'', image: '' } })
-      // const dbFirstname = await db.formData.toArray();
-      // console.log(dbFirstname)      
+       alert("This operation has been successfully") 
+       // this.setState({article:{title: '', content: '', date:'', image: '' } })
+      const dbFirstname = await db.formData.toArray();
+      console.log(dbFirstname)   
+       window.location.href='/home'   
       }).catch(e => {
         // log any errors
         console.log(e.stack || e)
