@@ -8,6 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Form from './FormEditArticle.js'
 import {Link } from 'react-router-dom';
 import store from 'store';
+import Button from '@material-ui/core/Button';
 const db = new Dexie('MyDatabase');
 const useStyles = makeStyles(theme => ({
   title: {
@@ -30,6 +31,8 @@ class App extends Component {
      <MuiThemeProvider>
       <AppBar position="static">
         <Toolbar>
+        <Button color="inherit" onClick={()=>window.location.href='/home'} style={{textAlign:'left'}}>Home</Button>
+          
           <Typography variant="h6" style={{flexGrow: 1,textAlign: 'center',}}>
             Edit Article
           </Typography>

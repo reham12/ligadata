@@ -8,6 +8,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Form from './FormAddArticle.js'
 import {Link } from 'react-router-dom';
 import store from 'store';
+import Button from '@material-ui/core/Button';
+
 const useStyles = makeStyles(theme => ({
   title: {
     flexGrow: 1,
@@ -27,6 +29,7 @@ const AddArticle = () => {
     <MuiThemeProvider>
       <AppBar position="static">
         <Toolbar>
+          <Button color="inherit" onClick={()=>window.location.href='/home'} style={{textAlign:'left'}}>Home</Button>
           <Typography variant="h6" className={classes.title}>
             Add Article
           </Typography>
